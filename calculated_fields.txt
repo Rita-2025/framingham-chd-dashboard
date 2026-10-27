@@ -1,0 +1,54 @@
+CALCULATED FIELDS - CHD Risk Dashboard (Tableau)
+Framingham Heart Study analysis by Rita Manzie
+================================================
+
+Formulas below are copied from the Tableau workbook
+RITA_MANZIE_CHD_RISK_DASHBOARD.twbx.
+
+
+1. Age Group
+------------
+Used in: Prevalence of CHD by Age Group (columns)
+
+IF [age] < 30 THEN "Under 30"
+ELSEIF [age] < 40 THEN "30-39"
+ELSEIF [age] < 50 THEN "40-49"
+ELSEIF [age] < 60 THEN "50-59"
+ELSE "60+"
+END
+
+Note: participants aged 70-79 are merged into "60+" because only 2 people
+fell in that range, too few to report a separate rate. No participants
+were under 30, so that group does not appear in the chart.
+
+
+2. % CHD Prevalence  (shown on the chart axis as "% with CHD")
+----------------------------------------------------------------
+Used in: Prevalence of CHD by Age Group (rows)
+
+SUM([anyCHD]) / COUNT([anyCHD]) * 100
+
+Note: anyCHD is 1 (developed CHD) or 0 (did not), so this is the share of
+participants with CHD, shown as a percentage. Number format: custom,
+1 decimal place, with a "%" suffix (the value is already multiplied by 100).
+
+
+MEASURE SETTINGS (no formula needed)
+====================================
+
+CHD rate for smokers, non-smokers, men and women
+  Field: Any CHD, aggregation set to AVERAGE.
+  The average of a 0/1 field is the share with CHD.
+  Number format: Percentage, 1 decimal place.
+
+Scorecard averages
+  Age, BMI, Sys BP, Dia BP, Heart Rate, Cigs Per Day: aggregation AVERAGE.
+
+Scorecard percentages
+  BP Meds, Diabetes, Prevalent Stroke, Prevalent Hyp: aggregation AVERAGE
+  (0/1 fields, so the average is the share with the condition).
+  Number format: Percentage, 1 decimal place.
+
+BMI box plots
+  Analysis > Aggregate Measures turned OFF, so each participant is one mark.
+  19 participants with no BMI value are excluded.
