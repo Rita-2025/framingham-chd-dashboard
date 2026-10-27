@@ -7,7 +7,9 @@ An exploratory analysis and Tableau dashboard comparing participants who develop
 ![Full dashboard](images/00_full_dashboard.png)
 
 **Type:** Course project, Master of Professional Studies in Analytics, Northeastern University
+
 **Tools:** Tableau Desktop (calculated fields, box plots, trend lines, dashboard layout)
+
 **Data:** Framingham Heart Study dataset, 4,434 participants, 26 fields (not included in this repository; see [Data](#data))
 
 ---
